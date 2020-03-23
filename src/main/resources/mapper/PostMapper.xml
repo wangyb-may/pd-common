@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bysj.wyb.common.mapper.PostMapper">
+    <select id="findList" resultType="com.bysj.wyb.common.entity.Post">
+        select * from pd_post where isdelete=0
+    </select>
+
+    <select id="findPostById" resultType="com.bysj.wyb.common.entity.Post">
+        select * from pd_post where pid=#{pid}
+    </select>
+
+
+
+    <insert id="addPost" parameterType="com.bysj.wyb.common.entity.Post">
+        insert into pd_post
+        set pid=#{pid},title=#{title},posttype=#{postType},content=#{content},createuser=#{createUser},createtime=#{createTime}
+    </insert>
+
+    <select id="findForumName" resultType="java.lang.String">
+        select forumname from ${tableName} where uid=#{uid}
+    </select>
+
+</mapper>
