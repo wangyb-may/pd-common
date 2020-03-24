@@ -6,7 +6,7 @@
     </select>
 
     <select id="findPostById" resultType="com.bysj.wyb.common.entity.Post">
-        select * from pd_post where pid=#{pid}
+        select * from pd_post where pid=#{pid} and isdelete=0
     </select>
 
 
@@ -18,6 +18,10 @@
 
     <select id="findForumName" resultType="java.lang.String">
         select forumname from ${tableName} where uid=#{uid}
+    </select>
+
+    <select id="findUserPostListByUserId" resultType="com.bysj.wyb.common.entity.Post">
+        select * from pd_post where createuser=#{createUser} and isdelete=0
     </select>
 
 </mapper>

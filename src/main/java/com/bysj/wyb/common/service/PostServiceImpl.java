@@ -79,7 +79,7 @@ public class PostServiceImpl implements PostService{
     }
 
     /**
-     * 查询帖子
+     * 根据帖子id查询帖子详情
      * @param pid
      * @return
      */
@@ -92,5 +92,15 @@ public class PostServiceImpl implements PostService{
             return hr.outResultWithoutData("500",e.getMessage());
         }
 
+    }
+
+    @Override
+    public Result findUserPostListById(String createUser) {
+        HandleResult hr=new HandleResult();
+        try {
+            return hr.outResultWithData("0","查询成功",postMapper.findUserPostListByUserId(createUser));
+        }catch (Exception e){
+            return hr.outResultWithoutData("500",e.getMessage());
+        }
     }
 }

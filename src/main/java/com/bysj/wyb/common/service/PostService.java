@@ -13,4 +13,6 @@ public interface PostService {
     public Result addPost(Post posts);
 
     public Result findPostById(String pid);
+
+    public Result findUserPostListById(String createUser);
 }

@@ -1,9 +1,7 @@
 package com.bysj.wyb.common.mapper;
 
 import com.bysj.wyb.common.entity.Post;
-import javafx.geometry.Pos;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,4 +24,6 @@ public interface PostMapper {
      * @return
      */
     String findForumName(String uid,String tableName);
+
+    List<Post> findUserPostListByUserId(String createUser);
 }

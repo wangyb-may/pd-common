@@ -4,10 +4,7 @@ import com.bysj.wyb.common.entity.Post;
 import com.bysj.wyb.common.result.Result;
 import com.bysj.wyb.common.service.PostService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -41,4 +38,9 @@ public class PostController {
         return postService.findPostList();
     }
 
+
+    @RequestMapping(value = "/userPostList")
+    public Result findUserPostList(String userId){
+        return postService.findUserPostListById(userId);
+    }
 }
