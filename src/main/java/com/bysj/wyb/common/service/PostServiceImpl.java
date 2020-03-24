@@ -78,6 +78,11 @@ public class PostServiceImpl implements PostService{
 
     }
 
+    /**
+     * 查询帖子
+     * @param pid
+     * @return
+     */
     @Override
     public Result findPostById(String pid) {
         HandleResult hr=new HandleResult();
