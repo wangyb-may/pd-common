@@ -120,8 +120,14 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-
+        <!--阿里云相关-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.4.2</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <resources>
