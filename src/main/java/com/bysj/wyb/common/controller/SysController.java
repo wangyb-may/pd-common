@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -28,5 +30,10 @@ public class SysController {
     @RequestMapping(value = "/logCounter")
     public void logCounter(@RequestParam String uid, HttpServletRequest request){
         sysService.logCount(uid);
+    }
+
+    @RequestMapping(value = "/upload")
+    public void uploadToOss(@RequestParam("file") MultipartFile file){
+        sysService.uplodToOSS(file);
     }
 }
