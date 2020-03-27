@@ -2,6 +2,7 @@ package com.bysj.wyb.common.controller;
 
 
 import com.bysj.wyb.common.annotation.UserLog;
+import com.bysj.wyb.common.result.Result;
 import com.bysj.wyb.common.service.SysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,8 +33,9 @@ public class SysController {
         sysService.logCount(uid);
     }
 
+
     @RequestMapping(value = "/upload")
-    public void uploadToOss(@RequestParam("file") MultipartFile file){
-        sysService.uplodToOSS(file);
+    public Result uploadToOss(@RequestParam("file") MultipartFile file, @RequestParam String uploadCatalogAndName){
+        return sysService.uplodToOSS(file,uploadCatalogAndName);
     }
 }
