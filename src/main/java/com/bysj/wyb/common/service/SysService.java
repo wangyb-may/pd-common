@@ -56,7 +56,7 @@ public class SysService {
             multipartFile.transferTo(file);
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uploadCatalogAndName, file);
             ossClient.putObject(putObjectRequest);
-            Date expiration = new Date(new Date().getTime() + 3600 * 1000*24*30*12*10);
+            Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000*24*30*12*10);
             url=ossClient.generatePresignedUrl(bucketName,uploadCatalogAndName,expiration);
             System.out.println(url.toString());
 
