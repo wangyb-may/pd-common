@@ -12,8 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +32,8 @@ public class SysService {
     }
 
     public Result uplodToOSS(MultipartFile multipartFile,String uploadCatalogAndName){
+        System.out.println(multipartFile.getOriginalFilename());
+        System.out.println(uploadCatalogAndName);
         HandleResult hr=new HandleResult();
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         String endpoint = "http://oss-cn-chengdu.aliyuncs.com";

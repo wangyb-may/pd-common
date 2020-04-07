@@ -5,10 +5,7 @@ import com.bysj.wyb.common.annotation.UserLog;
 import com.bysj.wyb.common.result.Result;
 import com.bysj.wyb.common.service.SysService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +31,8 @@ public class SysController {
     }
 
 
-    @RequestMapping(value = "/upload")
-    public Result uploadToOss(@RequestParam("file") MultipartFile file, String uploadCatalogAndName){
+    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    public Result uploadToOss(@RequestParam("file") MultipartFile file, @RequestParam String uploadCatalogAndName){
         return sysService.uplodToOSS(file,uploadCatalogAndName);
     }
 }

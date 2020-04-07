@@ -65,6 +65,18 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
         <!--解决FeignClient使用服务名无法调用其他服务只能指定url的问题-->
         <dependency>
             <groupId>com.netflix.archaius</groupId>
