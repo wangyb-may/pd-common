@@ -32,7 +32,7 @@ public class SysController {
 
 
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
-    public Result uploadToOss(@RequestParam("file") MultipartFile file, @RequestParam String uploadCatalogAndName){
+    public Result uploadToOss(@RequestPart("file") MultipartFile file, @RequestParam String uploadCatalogAndName){
         return sysService.uplodToOSS(file,uploadCatalogAndName);
     }
 }
