@@ -55,7 +55,7 @@ public class SysService {
         try {
             File file = File.createTempFile(fileName, prefix);
             multipartFile.transferTo(file);
-            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uploadCatalogAndName, file);
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uploadCatalogAndName+"."+prefix, file);
             ossClient.putObject(putObjectRequest);
             Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000*24*30*12*10);
             url=ossClient.generatePresignedUrl(bucketName,uploadCatalogAndName,expiration);
