@@ -26,4 +26,6 @@ public interface PostMapper {
     String findForumName(String uid,String tableName);
 
     List<Post> findUserPostListByUserId(String createUser);
+
+    int updateForumName(String name,String uid,String table);
 }

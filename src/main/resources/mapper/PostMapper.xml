@@ -16,12 +16,16 @@
         set pid=#{pid},title=#{title},posttype=#{postType},content=#{content},createuser=#{createUser},createtime=#{createTime}
     </insert>
 
-    <select id="findForumName" resultType="java.lang.String">
+    <select id="findForumName" resultType="string">
         select forumname from ${tableName} where uid=#{uid}
     </select>
 
     <select id="findUserPostListByUserId" resultType="com.bysj.wyb.common.entity.Post">
         select * from pd_post where createuser=#{createUser} and isdelete=0
     </select>
+
+    <update id="updateForumName" parameterType="string">
+        update ${table} set forumname=#{name} where uid=#{uid}
+    </update>
 
 </mapper>

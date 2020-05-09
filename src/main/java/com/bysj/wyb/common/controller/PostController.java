@@ -1,6 +1,7 @@
 package com.bysj.wyb.common.controller;
 
 import com.bysj.wyb.common.entity.Post;
+import com.bysj.wyb.common.result.HandleResult;
 import com.bysj.wyb.common.result.Result;
 import com.bysj.wyb.common.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -42,5 +43,15 @@ public class PostController {
     @RequestMapping(value = "/userPostList")
     public Result findUserPostList(String userId){
         return postService.findUserPostListById(userId);
+    }
+
+    @GetMapping(value = "/updateForumName")
+    public Result UpdateForumName(String uid,String forumName,String table){
+        HandleResult hr=new HandleResult();
+        if(uid!=null&&uid!=""&&forumName!=null&&forumName!=""){
+            return postService.updateForumName(forumName,uid,table);
+        }else{
+            return hr.outResultWithoutData("1","未知异常");
+        }
     }
 }

@@ -15,4 +15,12 @@ public interface PostService {
     public Result findPostById(String pid);
 
     public Result findUserPostListById(String createUser);
+
+    /**
+     * 修改论坛昵称
+     * @param name
+     * @param uid
+     * @return
+     */
+    Result updateForumName(String name,String uid,String table);
 }

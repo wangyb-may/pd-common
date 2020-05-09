@@ -103,4 +103,19 @@ public class PostServiceImpl implements PostService{
             return hr.outResultWithoutData("500",e.getMessage());
         }
     }
+
+    @Override
+    public Result updateForumName(String name, String uid,String table) {
+        HandleResult hr=new HandleResult();
+        try {
+            if(1==postMapper.updateForumName(name,uid,table)){
+                return hr.outResultWithData("0","设置成功",name);
+            }else{
+                return hr.outResultWithoutData("1","设置失败");
+            }
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return hr.outResultWithoutData("1","服务异常");
+        }
+    }
 }
