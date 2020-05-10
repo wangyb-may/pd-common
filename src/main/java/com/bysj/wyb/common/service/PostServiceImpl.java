@@ -1,8 +1,10 @@
 package com.bysj.wyb.common.service;
 
 import com.bysj.wyb.common.entity.Post;
+import com.bysj.wyb.common.entity.Reply;
 import com.bysj.wyb.common.mapper.PostMapper;
 import com.bysj.wyb.common.result.HandleResult;
+import com.bysj.wyb.common.result.IdWorker;
 import com.bysj.wyb.common.result.Result;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +30,6 @@ public class PostServiceImpl implements PostService{
     @Resource
     PostMapper postMapper;
 
-    @Resource
-    RedisTemplate redisTemplate;
 
     String rediskey="posts";
 
@@ -38,21 +38,16 @@ public class PostServiceImpl implements PostService{
     public Result findPostList() {
         HandleResult hr=new HandleResult();
 
-        if(redisTemplate.hasKey(rediskey)){
-            log.info("缓存中存在帖子集合");
-            List<Post> posts=redisTemplate.opsForList().range(rediskey,0,-1);
-            return hr.outResultWithData("0","success",posts);
-        }else{
+
             List<Post> posts=postMapper.findList();
             for(Post temp : posts){
                 String name=postMapper.findForumName(temp.getCreateUser(),"pd_student");
                 if(null!=name){
                     temp.setCreateUser(name);
                 }
-                redisTemplate.opsForList().leftPush(rediskey,temp);
             }
             return hr.outResultWithData("0","success",posts);
-        }
+
 
     }
 
@@ -64,11 +59,8 @@ public class PostServiceImpl implements PostService{
             post.setPid(UUID.randomUUID().toString());
             post.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             if(1==postMapper.addPost(post)){
-                //更新redis
-                if(redisTemplate.hasKey(rediskey)){
-                    redisTemplate.opsForList().leftPush(rediskey,postMapper.findPostById(post.getPid()));
-                }
-                return hr.outResultWithoutData("0","success");
+
+                return hr.outResultWithoutData("0","发帖成功！");
             }else{
                 return hr.outResultWithoutData("1","未知异常");
             }
@@ -117,5 +109,34 @@ public class PostServiceImpl implements PostService{
             log.error(e.getMessage());
             return hr.outResultWithoutData("1","服务异常");
         }
+    }
+
+    @Override
+    public Result findPostReply(String postId) {
+        HandleResult hr=new HandleResult();
+        try{
+            return hr.outResultWithData("0","成功",postMapper.findPostReply(postId));
+
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return hr.outResultWithoutData("0","服务异常");
+        }
+    }
+
+    @Override
+    public Result addPostReply(Reply re) {
+        HandleResult hr=new HandleResult();
+        try{
+            re.setReplyTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            IdWorker snow=new IdWorker(1,1,1);
+            re.setId(String.valueOf(snow.nextId()));
+            postMapper.addReply(re);
+            return hr.outResultWithoutData("0","回复成功！");
+        }catch(Exception e){
+
+            log.error(e.getMessage());
+            return hr.outResultWithoutData("1","错误");
+        }
+
     }
 }

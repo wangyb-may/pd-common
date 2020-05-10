@@ -10,7 +10,6 @@
     </select>
 
 
-
     <insert id="addPost" parameterType="com.bysj.wyb.common.entity.Post">
         insert into pd_post
         set pid=#{pid},title=#{title},posttype=#{postType},content=#{content},createuser=#{createUser},createtime=#{createTime}
@@ -28,4 +27,11 @@
         update ${table} set forumname=#{name} where uid=#{uid}
     </update>
 
+    <select id="findPostReply" resultType="com.bysj.wyb.common.entity.Reply">
+        select * from pd_reply where postid=#{postId}
+    </select>
+
+    <insert id="addReply" parameterType="com.bysj.wyb.common.entity.Reply">
+        insert into pd_reply set postid=#{postId},id=#{id},parentid=#{parentId},content=#{content},respondentname=#{respondentName},replytime=#{replyTime}
+    </insert>
 </mapper>

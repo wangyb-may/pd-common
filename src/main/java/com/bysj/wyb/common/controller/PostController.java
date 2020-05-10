@@ -1,6 +1,7 @@
 package com.bysj.wyb.common.controller;
 
 import com.bysj.wyb.common.entity.Post;
+import com.bysj.wyb.common.entity.Reply;
 import com.bysj.wyb.common.result.HandleResult;
 import com.bysj.wyb.common.result.Result;
 import com.bysj.wyb.common.service.PostService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author wangyb
@@ -53,5 +55,15 @@ public class PostController {
         }else{
             return hr.outResultWithoutData("1","未知异常");
         }
+    }
+
+    @RequestMapping(value = "/findReply")
+    public Result findReply(@RequestBody Map<String,String> resBody){
+        return postService.findPostReply(resBody.get("postId"));
+    }
+
+    @RequestMapping(value = "/addReply")
+    public Result addReply(@RequestBody Reply reply){
+        return postService.addPostReply(reply);
     }
 }

@@ -1,6 +1,7 @@
 package com.bysj.wyb.common.mapper;
 
 import com.bysj.wyb.common.entity.Post;
+import com.bysj.wyb.common.entity.Reply;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -28,4 +29,8 @@ public interface PostMapper {
     List<Post> findUserPostListByUserId(String createUser);
 
     int updateForumName(String name,String uid,String table);
+
+    List<Reply> findPostReply(String postId);
+
+    int addReply(Reply reply);
 }

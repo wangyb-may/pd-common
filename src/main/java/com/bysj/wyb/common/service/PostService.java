@@ -1,6 +1,7 @@
 package com.bysj.wyb.common.service;
 
 import com.bysj.wyb.common.entity.Post;
+import com.bysj.wyb.common.entity.Reply;
 import com.bysj.wyb.common.result.Result;
 
 /**
@@ -23,4 +24,8 @@ public interface PostService {
      * @return
      */
     Result updateForumName(String name,String uid,String table);
+
+    Result findPostReply(String postId);
+
+    Result addPostReply(Reply re);
 }
