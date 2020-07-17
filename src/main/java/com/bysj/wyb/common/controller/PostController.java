@@ -42,11 +42,23 @@ public class PostController {
     }
 
 
+    /**
+     * 获取用户帖子接口
+     * @param userId
+     * @return
+     */
     @RequestMapping(value = "/userPostList")
     public Result findUserPostList(String userId){
         return postService.findUserPostListById(userId);
     }
 
+    /**
+     * 更新论坛名称
+     * @param uid
+     * @param forumName
+     * @param table
+     * @return
+     */
     @GetMapping(value = "/updateForumName")
     public Result UpdateForumName(String uid,String forumName,String table){
         HandleResult hr=new HandleResult();
@@ -57,11 +69,21 @@ public class PostController {
         }
     }
 
+    /**
+     * 获取回复
+     * @param resBody
+     * @return
+     */
     @RequestMapping(value = "/findReply")
     public Result findReply(@RequestBody Map<String,String> resBody){
         return postService.findPostReply(resBody.get("postId"));
     }
 
+    /**
+     * 发布回复
+     * @param reply
+     * @return
+     */
     @RequestMapping(value = "/addReply")
     public Result addReply(@RequestBody Reply reply){
         return postService.addPostReply(reply);

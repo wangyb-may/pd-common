@@ -5,5 +5,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface SysMapper {
+    /**
+     * 记录登录信息
+     * @param counter
+     * @return
+     */
     int logCount(Counter counter);
 }

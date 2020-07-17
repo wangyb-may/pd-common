@@ -31,6 +31,12 @@ public class SysController {
     }
 
 
+    /**
+     * 上传文件接口
+     * @param file
+     * @param uploadCatalogAndName
+     * @return
+     */
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Result uploadToOss(@RequestPart("file") MultipartFile file, @RequestParam String uploadCatalogAndName){
         return sysService.uplodToOSS(file,uploadCatalogAndName);
