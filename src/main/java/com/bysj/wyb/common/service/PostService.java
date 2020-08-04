@@ -13,6 +13,7 @@ public interface PostService {
 
     /**
      * 发帖
+     *
      * @param posts
      * @return
      */
@@ -20,6 +21,7 @@ public interface PostService {
 
     /**
      * 帖子详细信息
+     *
      * @param pid
      * @return
      */
@@ -29,14 +31,16 @@ public interface PostService {
 
     /**
      * 修改论坛昵称
+     *
      * @param name
      * @param uid
      * @return
      */
-    Result updateForumName(String name,String uid,String table);
+    Result updateForumName(String name, String uid, String table);
 
     /**
      * 查询回复
+     *
      * @param postId
      * @return
      */
@@ -44,6 +48,7 @@ public interface PostService {
 
     /**
      * 添加回复
+     *
      * @param re
      * @return
      */

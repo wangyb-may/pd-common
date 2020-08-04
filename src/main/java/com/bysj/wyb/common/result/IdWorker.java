@@ -7,15 +7,15 @@ public class IdWorker {
     //12位的序列号
     private long sequence;
 
-    public IdWorker(long workerId, long datacenterId, long sequence){
+    public IdWorker(long workerId, long datacenterId, long sequence) {
         // sanity check for workerId
         if (workerId > maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0",maxWorkerId));
+            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
-            throw new IllegalArgumentException(String.format("datacenter Id can't be greater than %d or less than 0",maxDatacenterId));
+            throw new IllegalArgumentException(String.format("datacenter Id can't be greater than %d or less than 0", maxDatacenterId));
         }
-       System.out.printf("worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d",
+        System.out.printf("worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d",
                 timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId);
 
 
@@ -48,15 +48,15 @@ public class IdWorker {
     //上次时间戳，初始值为负数
     private long lastTimestamp = -1L;
 
-    public long getWorkerId(){
+    public long getWorkerId() {
         return workerId;
     }
 
-    public long getDatacenterId(){
+    public long getDatacenterId() {
         return datacenterId;
     }
 
-    public long getTimestamp(){
+    public long getTimestamp() {
         return System.currentTimeMillis();
     }
 
@@ -108,7 +108,7 @@ public class IdWorker {
     }
 
     //获取系统时间戳
-    private long timeGen(){
+    private long timeGen() {
         return System.currentTimeMillis();
     }
 }

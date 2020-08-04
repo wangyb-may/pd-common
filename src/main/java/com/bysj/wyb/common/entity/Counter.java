@@ -17,6 +17,6 @@ public class Counter {
     @Id
     String uid;
 
-    @Column(name="logtime")
+    @Column(name = "logtime")
     String logTime;
 }

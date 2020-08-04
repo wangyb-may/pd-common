@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SysMapper {
     /**
      * 记录登录信息
+     *
      * @param counter
      * @return
      */

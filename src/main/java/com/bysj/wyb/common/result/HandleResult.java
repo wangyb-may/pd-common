@@ -5,14 +5,13 @@ package com.bysj.wyb.common.result;
  */
 public class HandleResult {
 
-    public Result outResultWithData(String status,String message,Object data){
-        Result re=new Result();
-        if("1".equals(status)){
+    public Result outResultWithData(String status, String message, Object data) {
+        Result re = new Result();
+        if ("1".equals(status)) {
             re.setStatus("1");
             re.setMessage(message);
             re.setData(data);
-        }
-        else {
+        } else {
             re.setStatus("0");
             re.setMessage(message);
             re.setData(data);
@@ -21,13 +20,12 @@ public class HandleResult {
         return re;
     }
 
-    public Result outResultWithoutData(String status,String message){
-        Result re=new Result();
-        if("1".equals(status)){
+    public Result outResultWithoutData(String status, String message) {
+        Result re = new Result();
+        if ("1".equals(status)) {
             re.setStatus("1");
             re.setMessage(message);
-        }
-        else {
+        } else {
             re.setStatus("0");
             re.setMessage(message);
         }

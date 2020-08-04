@@ -1,7 +1,6 @@
 package com.bysj.wyb.common.result;
 
 
-
 /**
  * @author admin
  */

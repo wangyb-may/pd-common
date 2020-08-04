@@ -23,24 +23,24 @@ public class SysService {
     @Resource
     SysMapper sysMapper;
 
-    public void logCount(String uid){
-        Counter counter=new Counter();
+    public void logCount(String uid) {
+        Counter counter = new Counter();
         counter.setUid(uid);
-        String logTime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String logTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         counter.setLogTime(logTime);
         sysMapper.logCount(counter);
     }
 
-    public Result uplodToOSS(MultipartFile multipartFile,String uploadCatalogAndName){
+    public Result uplodToOSS(MultipartFile multipartFile, String uploadCatalogAndName) {
         System.out.println(multipartFile.getOriginalFilename());
         System.out.println(uploadCatalogAndName);
-        HandleResult hr=new HandleResult();
+        HandleResult hr = new HandleResult();
         // Endpoint以杭州为例，其它Region请按实际情况填写。
-        String endpoint = "你的oss对象地址";
+        String endpoint = "http://oss-cn-chengdu.aliyuncs.com";
         // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-        String accessKeyId = "授权id";
-        String accessKeySecret = "授权密码";
-        String bucketName = "项目名称";
+        String accessKeyId = "LTAI4FqEfb86cMQiGtcEtxPn";
+        String accessKeySecret = "RxEK1zRbOaCMWc78NNNpK82LUqom89";
+        String bucketName = "wyb-bysj";
         URL url = null;
 
         // 创建OSSClient实例。
@@ -58,18 +58,18 @@ public class SysService {
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uploadCatalogAndName, file);
             ossClient.putObject(putObjectRequest);
             Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000);
-            url=ossClient.generatePresignedUrl(bucketName,uploadCatalogAndName,expiration);
+            url = ossClient.generatePresignedUrl(bucketName, uploadCatalogAndName, expiration);
             System.out.println(url.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(url!=null){
+        } finally {
+            if (url != null) {
                 ossClient.shutdown();
-                return hr.outResultWithData("0","上传成功",url.toString());
-            }else{
+                return hr.outResultWithData("0", "上传成功", url.toString());
+            } else {
                 ossClient.shutdown();
-                return hr.outResultWithoutData("1","上传失败");
+                return hr.outResultWithoutData("1", "上传失败");
             }
         }
     }

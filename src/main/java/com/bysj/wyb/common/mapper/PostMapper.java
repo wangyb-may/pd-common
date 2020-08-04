@@ -20,15 +20,16 @@ public interface PostMapper {
 
     /**
      * dsad
+     *
      * @param uid
      * @param tableName
      * @return
      */
-    String findForumName(String uid,String tableName);
+    String findForumName(String uid, String tableName);
 
     List<Post> findUserPostListByUserId(String createUser);
 
-    int updateForumName(String name,String uid,String table);
+    int updateForumName(String name, String uid, String table);
 
     List<Reply> findPostReply(String postId);
 
